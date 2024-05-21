@@ -1,0 +1,3 @@
+HealthMonitor
+Introduction
+Welcome to HealthMonitor! HealthMonitor is a comprehensive health tracking and management system designed to help individuals monitor and improve their overall well-being. Whether you're tracking fitness goals, managing chronic conditions, or simply aiming to live a healthier lifestyle, HealthMonitor provides the tools and insights you need to take control of your health journey.

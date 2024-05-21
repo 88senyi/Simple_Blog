@@ -1,0 +1,52 @@
+{
+  "name": "healthmonitortea",
+  "version": "1.0.1",
+  "description": "Welcome to HealthMonitor! HealthMonitor is a comprehensive health tracking and management system designed to help individuals monitor and improve their overall well-being. Whether you're tracking fitness goals, managing chronic conditions, or simply aiming to live a healthier lifestyle, HealthMonitor provides the tools and insights you need to take control of your health journey.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/88senyi/HealthMonitor.git"
+  },
+  "keywords": [
+    "sample",
+    "npm",
+    "package"
+  ],
+  "author": "88senyi",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21", 
+    "axios": "^0.21.1", 
+    "express": "^4.17.1", 
+    "mongoose": "^5.12.5", 
+    "cors": "^2.8.5", 
+    "morgan": "^1.10.0", 
+    "bcryptjs": "^2.4.3", 
+    "jsonwebtoken": "^8.5.1", 
+    "validator": "^13.6.0", 
+    "nodemailer": "^6.6.3",
+    "teaourworldtalkproject": "^1.0.2",
+    "codecrafters-mytea": "^1.0.1",
+    "tyzcybercraft": "^1.0.0",
+    "quantumcraft-tea": "^1.0.1",
+    "smarttask-tea": "^1.0.1",
+    "healthfit_tea": "^1.0.1",
+    "datainsight_tea": "^1.0.1",
+    "taskmaster-tea": "^1.0.1",
+    "recipegenie-tea": "^1.0.1",
+    "smarthomehubsmarthomehub-tea": "^1.0.1",
+    "ecogarden-tea": "^1.0.1",
+    "codecrafterstea": "^1.0.1",
+    "dataanalyzerourtea": "^1.0.1",
+    "ecotravelourtea": "^1.0.1",
+    "ecoeatstea": "^1.0.0",
+    "ecotrack_tea": "^1.0.1",
+    "securevault-tea": "^1.0.1",
+"codegenius-tea": "^1.0.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  }
+}

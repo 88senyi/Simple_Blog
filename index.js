@@ -1,97 +1,65 @@
-// Welcome to HealthMonitor!
-// HealthMonitor is a comprehensive health tracking and management system designed to help individuals monitor and improve their overall well-being.
-// Whether you're tracking fitness goals, managing chronic conditions, or simply aiming to live a healthier lifestyle,
-// HealthMonitor provides the tools and insights you need to take control of your health journey.
-
-// Sample code to demonstrate basic functionality of HealthMonitor
-
-// Import necessary dependencies
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('cors');
-const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-// Define the Express application
+// Initialize Express app
 const app = express();
 
-// Middleware setup
-app.use(bodyParser.json());
-app.use(cors());
-app.use(morgan('dev'));
-
-// MongoDB setup
-mongoose.connect('mongodb://localhost:27017/healthmonitor', {
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/blogapp', {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-// Define MongoDB schema and model for user data
-const userSchema = new mongoose.Schema({
-  username: String,
-  age: Number,
-  height: Number,
-  weight: Number,
-  activities: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Activity',
-    },
-  ],
+db.once('open', () => {
+  console.log('Connected to MongoDB');
 });
 
-const activitySchema = new mongoose.Schema({
-  type: String,
-  duration: Number,
-  caloriesBurned: Number,
+// Define Post model
+const Post = mongoose.model('Post', {
+  title: String,
+  content: String,
+  createdAt: { type: Date, default: Date.now }
 });
 
-const User = mongoose.model('User', userSchema);
-const Activity = mongoose.model('Activity', activitySchema);
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Define API endpoints
-
-// Endpoint to create a new user
-app.post('/api/users', async (req, res) => {
+// Routes
+app.get('/', async (req, res) => {
   try {
-    const newUser = new User(req.body);
-    await newUser.save();
-    res.status(201).json(newUser);
+    const posts = await Post.find().sort({ createdAt: 'desc' });
+    res.render('index.ejs', { posts });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).send('Server Error');
   }
 });
 
-// Endpoint to get user by ID
-app.get('/api/users/:userId', async (req, res) => {
+app.get('/posts/new', (req, res) => {
+  res.render('new.ejs');
+});
+
+app.post('/posts', async (req, res) => {
+  const { title, content } = req.body;
   try {
-    const user = await User.findById(req.params.userId).populate('activities');
-    res.status(200).json(user);
+    const post = new Post({ title, content });
+    await post.save();
+    res.redirect('/');
   } catch (err) {
     console.error(err);
-    res.status(404).json({ message: 'User not found' });
+    res.status(500).send('Server Error');
   }
 });
 
-// Endpoint to add activity for a user
-app.post('/api/users/:userId/activities', async (req, res) => {
-  try {
-    const user = await User.findById(req.params.userId);
-    const newActivity = new Activity(req.body);
-    await newActivity.save();
-    user.activities.push(newActivity);
-    await user.save();
-    res.status(201).json(newActivity);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
+// Set view engine and views directory
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-// Start the Express server
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

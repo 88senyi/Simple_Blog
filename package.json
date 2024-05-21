@@ -1,23 +1,22 @@
 {
-  "name": "healthmonitortea",
-  "version": "1.0.1",
-  "description": "Welcome to HealthMonitor! HealthMonitor is a comprehensive health tracking and management system designed to help individuals monitor and improve their overall well-being. Whether you're tracking fitness goals, managing chronic conditions, or simply aiming to live a healthier lifestyle, HealthMonitor provides the tools and insights you need to take control of your health journey.",
+  "name": "Simple_Blog",
+  "version": "1.0.0",
+  "description": "Simple Blog App is a lightweight web application that allows users to create and view blog posts easily.",
   "main": "index.js",
   "scripts": {},
   "repository": {
-    "type": "git",
-    "url": "https://github.com/88senyi/HealthMonitor.git"
+  "type": "git",
+  "url": "https://github.com/88senyi/Simple_Blog.git"
   },
   "keywords": [
-    "sample",
-    "npm",
-    "package"
+  "sample",
+  "npm",
+  "package"
   ],
   "author": "88senyi",
   "license": "MIT",
-  "dependencies": {
-    "lodash": "^4.17.21", 
-    "axios": "^0.21.1", 
+  "dependencies":
+   {
     "express": "^4.17.1", 
     "mongoose": "^5.12.5", 
     "cors": "^2.8.5", 
@@ -40,13 +39,13 @@
     "codecrafterstea": "^1.0.1",
     "dataanalyzerourtea": "^1.0.1",
     "ecotravelourtea": "^1.0.1",
-    "ecoeatstea": "^1.0.0",
+    "healthmonitortea": "^1.0.1",
     "ecotrack_tea": "^1.0.1",
     "securevault-tea": "^1.0.1",
-"codegenius-tea": "^1.0.1"
+    "codegenius-tea": "^1.0.1"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+  "react": ">=16.8.0",
+  "react-dom": ">=16.8.0"
   }
-}
+  }
